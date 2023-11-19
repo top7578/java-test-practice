@@ -7,9 +7,25 @@ public class CalculationRequest {
     private final String operator;
 
     public CalculationRequest(String[] parts) {
+        if (parts.length != 3) {
+            throw new BadRequestException();
+        }
+
+        String operator = parts[1];
+        if (operator.length() != 1 || isInvalidOperator(operator)) {
+            throw new InvalidOperatorException();
+        }
+
         this.num2 = Long.parseLong(parts[2]);
         this.num1 = Long.parseLong(parts[0]);
-        this.operator = parts[1];
+        this.operator = operator;
+    }
+
+    private boolean isInvalidOperator(String operator) {
+        return !operator.equals("+") &&
+            !operator.equals("-") &&
+            !operator.equals("*") &&
+            !operator.equals("/");
     }
 
     public long getNum1() {
