@@ -33,6 +33,18 @@ public class CalculationRequestTest {
         assertEquals("+", calculationRequest.getOperator());
         assertEquals(123, calculationRequest.getNum2());
     }
+
+    @Test
+    public void 유효한_길이의_숫자가_들어오지_않으면_에러를_던진다() {
+        //given
+        String[] parts = {"232", "x"};
+
+        //when
+
+        //then
+        assertThrows(BadRequestException.class, () -> new CalculationRequest(parts));
+    }
+
     @Test
     public void 유효하지_않은_연산자가_들어오면_에러를_던진다() {
         //given
