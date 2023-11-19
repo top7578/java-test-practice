@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 public class CalculationRequestReader {
 
-    public String[] read() {
+    public CalculationRequest read() {
         Scanner scanner = new Scanner(System.in);
         String result = scanner.nextLine();
-        return result.split(" ");
+        String[] parts = result.split(" ");
+        return new CalculationRequest(parts);
     }
 }
